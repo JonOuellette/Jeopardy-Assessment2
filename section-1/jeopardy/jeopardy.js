@@ -17,6 +17,9 @@
 //    },
 //    ...
 //  ]
+const baseAPI = "https://jservice.io/api/";
+const NUM_CATEGORIES = 6;
+const NUM_CLUES = 5;
 
 let categories = [];
 
@@ -26,8 +29,15 @@ let categories = [];
  * Returns array of category ids
  */
 
-function getCategoryIds() {
+async function getCategoryIds() {
+    const response = await axios.get(`${baseAPI}categories?count=100`)
+    let catIds = response.data.map(cat => cat.id);
+    console.log (_.sampleSize(catIds, NUM_CATEGORIES))
+    return _.sampleSize(catIds, NUM_CATEGORIES);
 }
+             
+
+  
 
 /** Return object with data about a category:
  *
@@ -41,7 +51,16 @@ function getCategoryIds() {
  *   ]
  */
 
-function getCategory(catId) {
+async function getCategory(catId) {
+    const {data} = await axios.get(`${baseAPI}category`, {param: {id: catId}})
+    let {title, clues} = data
+    const randClues = _.sampleSize(clues, NUM_CLUES)
+    clues = randomClues.map(c=>({
+        question:c.question,
+        answer:c.answer,
+        showing:null
+      }))
+      return {title,clues}
 }
 
 /** Fill the HTML table#jeopardy with the categories & cells for questions.
@@ -53,6 +72,7 @@ function getCategory(catId) {
  */
 
 async function fillTable() {
+
 }
 
 /** Handle clicking on a clue: show the question or answer.
