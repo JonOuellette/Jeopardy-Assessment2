@@ -6,17 +6,33 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Jeopardy</title>
-  <link href="https://fonts.googleapis.com/css?family=Copse&display=swap"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lustria&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="jeopardy.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">  
+ 
 </head>
+
 <body>
 
-<table id = jeopardy>
-      <thead></thead>
-      <tbody></tbody>
-</table>
+<header>
+      <h1>Welcome to Jeopardy!</h1>
+      <button id="start">NEW GAME!</button>
+</header>
 
+<div id="spin-container">
+      <i class="fa fa-spin fa-spinner"></i>
+      <!--obtained from w3School and fontawesome when researching spinning loaders-->
+</div>      
+
+
+<div id = "gameContainer">
+      
+      <table id="jeopardy">
+            <thead></thead>
+            <tbody></tbody>
+      </table>
+
+</div>
 
 
 <script src="https://unpkg.com/jquery"></script>
